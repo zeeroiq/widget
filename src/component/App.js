@@ -1,5 +1,6 @@
 import React from "react";
 import Accordion from "./Accordion";
+import Search from "./Search";
 
 
 const programmingLanguages = [
@@ -40,7 +41,8 @@ const programmingLanguages = [
 function App() {
   return (
     <div>
-      <Accordion languages={programmingLanguages}/>
+        <Accordion languages={programmingLanguages}/>
+        <Search />
     </div>
   );
 }

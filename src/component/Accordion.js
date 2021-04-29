@@ -8,13 +8,13 @@ const Accordion = ({ languages }) => {
         setActiveLanguage(currentLanguage)
     }
 
-    const renderItems = languages.map((language, index) => {
+    const renderItems = languages.map((language, currentLanguageIndex) => {
 
-        const activeLang = index === activeLanguage ? 'active' : '';
+        const activeLang = currentLanguageIndex === activeLanguage ? 'active' : '';
 
         return (
             <React.Fragment key={language.title}>
-                <div className={`title ${ activeLang }`} onClick={() => onTitleClick(index)}>
+                <div className={`title ${ activeLang }`} onClick={() => onTitleClick(currentLanguageIndex)}>
                     <i className={`dropdown icon`} />
                     {language.title}
                 </div>
