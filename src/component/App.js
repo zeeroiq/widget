@@ -3,6 +3,9 @@ import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
 import Translate from "./Translate";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 const programmingLanguages = [
@@ -56,35 +59,64 @@ const options = [
 ]
 
 function App() {
-   const [select, onSelectChange] = useState(options[0]);
-   const [showDropdown, setShowDropdown] = useState(true);
-  return (
-    <div className='ui basic container'>
-        <Accordion languages={programmingLanguages}/>
-        <br />
-        <hr />
-        <br />
-        <Search />
-        <br />
-        <hr />
-        <br />
-        {
-            showDropdown
-                ? <Dropdown label={`Select Color`} options={options} select={select} onSelectChange={onSelectChange}/>
-                : null
-        }
-        <br/>
-        <button onClick={ () => setShowDropdown(!showDropdown) }
-                className='ui teal button'
-        >
-            Toggle Dropdown
-        </button>
-        <br/>
-        <br/>
-        <hr />
-        <Translate />
-    </div>
-  );
+    const [select, onSelectChange] = useState(options[0]);
+    const [showDropdown, setShowDropdown] = useState(true);
+    return (
+        <div className='ui basic container'>
+            <BrowserRouter>
+                <Header/>
+                <Route exact path='/'>
+                    <Accordion languages={programmingLanguages}/>
+                </Route>
+                <Route path='/accordion'>
+                    <Accordion languages={programmingLanguages}/>
+                </Route>
+                <Route path='/search' component={Search}/>
+                <Route path='/dropdown'>
+                    {
+                        showDropdown
+                            ? <Dropdown label={`Select Color`} options={options} select={select}
+                                        onSelectChange={onSelectChange}/>
+                            : null
+                    }
+                    <br/>
+                    <button onClick={() => setShowDropdown(!showDropdown)}
+                            className='ui teal button'
+                    >
+                        Toggle Dropdown
+                    </button>
+                </Route>
+                <Route path='/translate' component={Translate}/>
+            </BrowserRouter>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
+
+//     <Accordion languages={programmingLanguages}/>
+//     <br />
+//     <hr />
+//     <br />
+//     <Search />
+//     <br />
+//     <hr />
+//     <br />
+//     {
+//         showDropdown
+//             ? <Dropdown label={`Select Color`} options={options} select={select} onSelectChange={onSelectChange}/>
+//             : null
+//     }
+//     <br/>
+//     <button onClick={ () => setShowDropdown(!showDropdown) }
+//             className='ui teal button'
+//     >
+//         Toggle Dropdown
+//     </button>
+//     <br/>
+//     <br/>
+//     <hr />
+//     <Translate />
+// </div>
+
