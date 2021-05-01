@@ -7,8 +7,7 @@ const Dropdown = ({ options, select, onSelectChange }) => {
     const ref = useRef();
 
     useEffect(() => {
-
-        document.body.addEventListener('click', (event) => {
+        const onBodyClick = (event) => {
             // if (ref.current.contains(event.target)) {
             //     return;
             // }
@@ -16,7 +15,14 @@ const Dropdown = ({ options, select, onSelectChange }) => {
                 return;
             }
             setOpen(false);
-        }, {capture: true});
+        };
+
+        document.body.addEventListener('click', onBodyClick, {capture: true});
+
+        // return the cleanup function to clear/remove the body click event
+        return () => {
+            document.body.removeEventListener('click', onBodyClick);
+        };
 
     }, []);
 

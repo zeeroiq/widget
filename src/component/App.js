@@ -56,9 +56,9 @@ const options = [
 
 function App() {
    const [select, onSelectChange] = useState(options[0]);
-
+   const [showDropdown, setShowDropdown] = useState(true);
   return (
-    <div>
+    <div className='ui basic container'>
         <Accordion languages={programmingLanguages}/>
         <br />
         <hr />
@@ -67,7 +67,20 @@ function App() {
         <br />
         <hr />
         <br />
-        <Dropdown options={options} select={select} onSelectChange={onSelectChange}/>
+        {
+            showDropdown
+                ? <Dropdown options={options} select={select} onSelectChange={onSelectChange}/>
+                : null
+        }
+        <br/>
+        <button onClick={ () => setShowDropdown(!showDropdown) }
+                className='ui teal button'
+        >
+            Toggle Dropdown
+        </button>
+        <br/>
+        <br/>
+        <br/>
     </div>
   );
 }
