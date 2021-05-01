@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
+import Translate from "./Translate";
 
 
 const programmingLanguages = [
@@ -69,7 +70,7 @@ function App() {
         <br />
         {
             showDropdown
-                ? <Dropdown options={options} select={select} onSelectChange={onSelectChange}/>
+                ? <Dropdown label={`Select Color`} options={options} select={select} onSelectChange={onSelectChange}/>
                 : null
         }
         <br/>
@@ -80,7 +81,8 @@ function App() {
         </button>
         <br/>
         <br/>
-        <br/>
+        <hr />
+        <Translate />
     </div>
   );
 }
