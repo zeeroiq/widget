@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import Accordion from "./Accordion";
 import Search from "./Search";
+import Dropdown from "./Dropdown";
 
 
 const programmingLanguages = [
@@ -38,11 +39,35 @@ const programmingLanguages = [
     }
 ]
 
+const options = [
+    {
+        label: 'The Color Red',
+        value: 'Red'
+    },
+    {
+        label: 'The Color Green',
+        value: 'Green'
+    },
+    {
+        label: 'The Shade of Blue',
+        value: 'Blue'
+    }
+]
+
 function App() {
+   const [select, onSelectChange] = useState(options[0]);
+
   return (
     <div>
         <Accordion languages={programmingLanguages}/>
+        <br />
+        <hr />
+        <br />
         <Search />
+        <br />
+        <hr />
+        <br />
+        <Dropdown options={options} select={select} onSelectChange={onSelectChange}/>
     </div>
   );
 }
